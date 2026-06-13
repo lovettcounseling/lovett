@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Working / source assets — not for production
+Whitney - Assets/
+
+# Backup files
+*.bak
+*~
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# Logs
+*.log

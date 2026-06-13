@@ -523,9 +523,27 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   min-height: 100dvh;
   display: flex;
   align-items: center;          /* vertical center → label + h1 + p + CTA fit on one screen */
-  padding: var(--nav-h) 0 7rem; /* room under sticky nav, room for bottom scroll arrow */
+  /* Generous top buffer (clears the nav with air) + bottom room for scroll arrow */
+  padding: calc(var(--nav-h) + 4rem) 0 8rem;
   overflow: hidden;
   margin-top: calc(var(--nav-h) * -1);
+}
+
+/* Desktop: slightly smaller headline + extra vertical breathing room around block */
+@media (min-width: 1024px) {
+  .hero {
+    padding: calc(var(--nav-h) + 5rem) 0 9rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 4.6vw, 4.4rem);  /* a touch smaller than default */
+    line-height: 1.07;
+  }
+  .hero p {
+    margin-top: 1.5rem;
+  }
+  .hero .hero-cta-row {
+    margin-top: 2.25rem;
+  }
 }
 
 /* Background image fills entire hero */
@@ -1312,6 +1330,76 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
 .approach-card p {
   font-size: 0.95rem;
   line-height: 1.65;
+}
+
+/* ---------- CERTIFICATION CALLOUT ---------- */
+.cert-callout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 2.5rem;
+  max-width: 880px;
+  margin: 4rem auto 0;
+  padding: 2.25rem 2.5rem;
+  background: var(--cream-light);
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--clay);
+  position: relative;
+  z-index: 2;
+}
+
+.content-section.alt .cert-callout { background: #fff; }
+
+.cert-callout-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cert-callout-badge img {
+  width: 150px;
+  height: 150px;
+  display: block;
+  object-fit: contain;
+}
+
+.cert-callout-text .eyebrow {
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.cert-callout-text h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 1.55rem;
+  line-height: 1.3;
+  color: var(--text-dark);
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.005em;
+}
+
+.cert-callout-text h3 em {
+  font-style: italic;
+  color: var(--clay);
+}
+
+.cert-callout-text p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text-medium);
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .cert-callout {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .cert-callout-badge img { width: 130px; height: 130px; }
+  .cert-callout-text h3 { font-size: 1.35rem; }
 }
 
 /* ---------- FAQ ---------- */

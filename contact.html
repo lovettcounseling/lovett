@@ -6,11 +6,21 @@
 
 <title>Contact | Lovett Counseling & Consulting</title>
 <meta name="description" content="Reach out to Whitney Lovett, LPC, CCTP — trauma-informed therapy and consulting in Denver, Colorado. Send a message, call, or email.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://lovettcounselingandconsulting.com/contact.html">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Contact | Lovett Counseling & Consulting">
 <meta property="og:description" content="Reach out about therapy or consulting. Responses within two business days.">
+<meta property="og:url" content="https://lovettcounselingandconsulting.com/contact.html">
+<meta property="og:image" content="https://lovettcounselingandconsulting.com/images/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Lovett Counseling & Consulting">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact | Lovett Counseling & Consulting">
+<meta name="twitter:description" content="Reach out about therapy or consulting. Responses within two business days.">
+<meta name="twitter:image" content="https://lovettcounselingandconsulting.com/images/og-card.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,7 +103,7 @@
 
         <div>
           <h2 style="margin-bottom: 1.5rem;">Send a message</h2>
-          <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+          <form class="contact-form" id="contact-form">
 
             <div class="form-grid-2">
               <div class="form-group">
@@ -226,7 +236,7 @@
         </div>
         <p>Trauma-informed therapy and consulting based in Denver, Colorado. Whitney Lovett, MA, LPC, CCTP.</p>
         <div class="social-links">
-          <a href="https://instagram.com" aria-label="Instagram" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="https://www.instagram.com/practice.with.whitney" aria-label="Instagram" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
           <a href="https://www.psychologytoday.com/us/therapists/whitney-a-lovett-denver-co/267155" aria-label="Psychology Today" rel="noopener"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" font-family="serif" font-size="11" fill="currentColor" stroke="none">P</text></svg></a>
           <a href="mailto:lovettcounselingandconsulting@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
         </div>
@@ -255,16 +265,110 @@
 </footer>
 
 <script src="js/main.js" defer></script>
+
+<!-- ============================================================
+     EmailJS — contact form delivery
+     ------------------------------------------------------------
+     SETUP (one-time, ~5 minutes at emailjs.com):
+       1. Create a free account at https://www.emailjs.com/
+       2. Add an Email Service → choose "Gmail" → connect Whitney's gmail
+       3. Create an Email Template (use the template body from the README)
+       4. Replace the three placeholders below:
+            EMAILJS_PUBLIC_KEY   → Account → API Keys → Public Key
+            EMAILJS_SERVICE_ID   → Email Services → your service ID
+            EMAILJS_TEMPLATE_ID  → Email Templates → your template ID
+     ============================================================ -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   (function () {
+    // ---------- CONFIG: replace these three values ----------
+    const EMAILJS_PUBLIC_KEY  = "REPLACE_WITH_PUBLIC_KEY";
+    const EMAILJS_SERVICE_ID  = "REPLACE_WITH_SERVICE_ID";
+    const EMAILJS_TEMPLATE_ID = "REPLACE_WITH_TEMPLATE_ID";
+    // --------------------------------------------------------
+
+    // Initialize EmailJS
+    if (typeof emailjs !== "undefined") {
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
+
+    const form = document.getElementById("contact-form");
+    const status = form && form.querySelector(".form-status");
+    const submitBtn = form && form.querySelector("button[type=submit]");
+
+    // Pre-fill topic from ?topic= query string
     const params = new URLSearchParams(window.location.search);
-    const topic = params.get('topic');
-    if (topic) {
-      const sel = document.getElementById('topic');
+    const topicParam = params.get("topic");
+    if (topicParam) {
+      const sel = document.getElementById("topic");
       if (sel) {
-        Array.from(sel.options).forEach(opt => { if (opt.value === topic) sel.value = topic; });
+        Array.from(sel.options).forEach(opt => {
+          if (opt.value === topicParam) sel.value = topicParam;
+        });
       }
     }
+
+    if (!form) return;
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      if (!status || !submitBtn) return;
+
+      // Honeypot — silently succeed if a bot filled it
+      if (form.querySelector("[name=_gotcha]").value) return;
+
+      // Quick required-field check
+      const required = form.querySelectorAll("[required]");
+      let ok = true;
+      required.forEach(f => {
+        if (!f.value.trim()) {
+          f.style.borderColor = "#A07B6B";
+          ok = false;
+        }
+      });
+      if (!ok) {
+        status.textContent = "Please fill in the required fields.";
+        status.style.color = "#7F6354";
+        return;
+      }
+
+      submitBtn.disabled = true;
+      const originalLabel = submitBtn.textContent;
+      submitBtn.textContent = "Sending…";
+      status.textContent = "";
+
+      try {
+        if (typeof emailjs === "undefined") {
+          throw new Error("EmailJS not loaded");
+        }
+        // Build template params — these map to {{name}} tokens in the EmailJS template
+        const data = new FormData(form);
+        const templateParams = {
+          name:              data.get("name") || "",
+          email:             data.get("_replyto") || "",
+          phone:             data.get("phone") || "",
+          topic:             data.get("topic") || "",
+          message:           data.get("message") || "",
+          preferred_contact: data.get("preferred_contact") || "email",
+          submitted_at:      new Date().toLocaleString("en-US", { dateStyle: "full", timeStyle: "short" })
+        };
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+        form.reset();
+        status.textContent = "Thank you — your message is on its way. I'll respond within two business days.";
+        status.style.color = "#3E4A35";
+        submitBtn.textContent = "Sent ✓";
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+        }, 4000);
+      } catch (err) {
+        console.error(err);
+        status.textContent = "Sorry — something went wrong sending your message. Please email directly at lovettcounselingandconsulting@gmail.com.";
+        status.style.color = "#9A5238";
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    });
   })();
 </script>
 </body>

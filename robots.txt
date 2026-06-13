@@ -1,4 +1,30 @@
+# Lovett Counseling & Consulting — robots.txt
+# https://lovettcounselingandconsulting.com/
+
 User-agent: *
+Allow: /
+Disallow: /css/
+Disallow: /js/
+Disallow: /Whitney - Assets/
+
+# Image crawler
+User-agent: Googlebot-Image
+Allow: /images/
+
+# AI / LLM crawlers (allow them; llms.txt provides structured context)
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://lovettcounselingandconsulting.com/sitemap.xml

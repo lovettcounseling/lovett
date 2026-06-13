@@ -1,0 +1,177 @@
+<!--
+============================================================
+  EMAILJS TEMPLATE — Lovett Counseling & Consulting
+============================================================
+  HOW TO USE (tomorrow, at emailjs.com):
+    1. Open the EmailJS template you created
+    2. Switch the editor from "Plain Text" to "HTML / Code"
+    3. Copy EVERYTHING BELOW THE LINE (starting at <!DOCTYPE html>)
+       and paste it into the template Content field
+    4. In the template settings panel, set:
+         Subject:      New inquiry from {{name}} — Lovett Counseling
+         From Name:    Lovett Counseling Website
+         To Email:     lovettcounselingandconsulting@gmail.com
+         Reply To:     {{email}}
+    5. Save → use the "Test It" button to send yourself a preview.
+
+  The template uses tokens that the form on contact.html sends:
+    {{name}}  {{email}}  {{phone}}  {{topic}}  {{message}}
+    {{preferred_contact}}  {{submitted_at}}
+
+  These are filled in automatically when someone submits the form.
+============================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New inquiry — Lovett Counseling</title>
+</head>
+<body style="margin:0; padding:0; background:#F2EBE0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; color:#2C2618; -webkit-font-smoothing:antialiased;">
+
+<!-- Outer wrapper -->
+<table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background:#F2EBE0; padding:32px 16px;">
+  <tr>
+    <td align="center">
+
+      <!-- Email card -->
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width:600px; width:100%; background:#FFFFFF; box-shadow:0 8px 30px -12px rgba(44,38,24,0.15);">
+
+        <!-- Brand header bar -->
+        <tr>
+          <td style="background:#3E4A35; padding:28px 32px;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td>
+                  <div style="font-family: Georgia, 'Times New Roman', serif; font-size:22px; color:#F2EBE0; letter-spacing:-0.01em; line-height:1;">
+                    lovett <em style="font-style:italic; color:#D9A892;">counseling</em>
+                  </div>
+                  <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:10px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:#D9A892; margin-top:6px;">
+                    &amp; Consulting · Denver
+                  </div>
+                </td>
+                <td align="right" style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:10px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:rgba(242,235,224,0.7);">
+                  Website inquiry
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Headline -->
+        <tr>
+          <td style="padding:36px 32px 8px;">
+            <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:11px; font-weight:600; letter-spacing:0.26em; text-transform:uppercase; color:#A07B6B; margin-bottom:14px;">
+              New message from the website
+            </div>
+            <h1 style="margin:0; font-family: Georgia, 'Times New Roman', serif; font-size:30px; font-weight:500; line-height:1.15; color:#2C2618; letter-spacing:-0.01em;">
+              {{name}} reached out.
+            </h1>
+          </td>
+        </tr>
+
+        <!-- Sender block -->
+        <tr>
+          <td style="padding:24px 32px 8px;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background:#F8F3E8; border-left:3px solid #A07B6B; padding:18px 22px;">
+              <tr>
+                <td>
+                  <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:10px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:#8B8576; margin-bottom:4px;">
+                    Email
+                  </div>
+                  <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:16px; color:#2C2618; line-height:1.4;">
+                    <a href="mailto:{{email}}" style="color:#A07B6B; text-decoration:none; font-weight:600;">{{email}}</a>
+                  </div>
+                  <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:10px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:#8B8576; margin:14px 0 4px;">
+                    Phone
+                  </div>
+                  <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:16px; color:#2C2618; line-height:1.4;">
+                    {{phone}}
+                  </div>
+                  <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:10px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:#8B8576; margin:14px 0 4px;">
+                    Reaching out about
+                  </div>
+                  <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:16px; color:#2C2618; line-height:1.4; text-transform:capitalize;">
+                    {{topic}}
+                  </div>
+                  <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:10px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:#8B8576; margin:14px 0 4px;">
+                    Preferred follow-up
+                  </div>
+                  <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:16px; color:#2C2618; line-height:1.4; text-transform:capitalize;">
+                    {{preferred_contact}}
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Message body -->
+        <tr>
+          <td style="padding:28px 32px 8px;">
+            <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:11px; font-weight:600; letter-spacing:0.26em; text-transform:uppercase; color:#A07B6B; margin-bottom:14px;">
+              Their message
+            </div>
+            <div style="font-family: Georgia, 'Times New Roman', serif; font-size:17px; line-height:1.65; color:#2C2618; white-space:pre-wrap;">
+              {{message}}
+            </div>
+          </td>
+        </tr>
+
+        <!-- Reply CTA -->
+        <tr>
+          <td style="padding:32px 32px 8px;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+              <tr>
+                <td style="background:#3E4A35;">
+                  <a href="mailto:{{email}}?subject=Re%3A%20Your%20message%20to%20Lovett%20Counseling"
+                     style="display:inline-block; padding:14px 28px; font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#F2EBE0; text-decoration:none;">
+                    Reply to {{name}} &nbsp;&rarr;
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <div style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:12px; color:#8B8576; margin-top:14px; line-height:1.5;">
+              Tip — just hit Reply in your inbox; the reply-to is set to {{name}}'s address.
+            </div>
+          </td>
+        </tr>
+
+        <!-- Footer meta -->
+        <tr>
+          <td style="padding:24px 32px 36px;">
+            <hr style="border:none; border-top:1px solid rgba(44,38,24,0.1); margin:0 0 16px;">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+              <tr>
+                <td style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:11px; color:#8B8576; line-height:1.6;">
+                  Submitted {{submitted_at}}<br>
+                  Via the contact form at <a href="https://lovettcounselingandconsulting.com" style="color:#A07B6B; text-decoration:none;">lovettcounselingandconsulting.com</a>
+                </td>
+                <td align="right" style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:11px; color:#8B8576;">
+                  Lovett Counseling &amp; Consulting<br>
+                  Denver, CO
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+      </table>
+
+      <!-- Spacer + tiny note -->
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width:600px; width:100%; margin-top:18px;">
+        <tr>
+          <td align="center" style="font-family: -apple-system, Helvetica, Arial, sans-serif; font-size:11px; color:rgba(44,38,24,0.5); padding:8px 16px;">
+            This message was sent to you because someone used the contact form on your website.
+          </td>
+        </tr>
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
