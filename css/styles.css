@@ -370,19 +370,23 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   bottom: 0;
   background: var(--cream-light);
   z-index: 95;
-  padding: 2.5rem 2rem;
+  padding: 1.5rem 2rem 3rem;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .mobile-menu.open { display: flex; }
 
 .mobile-menu a {
   font-family: var(--font-serif);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: var(--text-dark);
-  padding: 0.65rem 0;
+  padding: 0.55rem 0;
   border-bottom: 1px solid var(--border-soft);
+  flex-shrink: 0;
 }
 
 .mobile-menu a:hover { color: var(--clay); }
@@ -391,6 +395,13 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   margin-top: 1rem;
   align-self: flex-start;
   font-size: 0.78rem;
+  flex-shrink: 0;
+}
+
+/* Very short phones — tighten further so all items + CTA fit comfortably */
+@media (max-height: 700px) {
+  .mobile-menu { padding-top: 1rem; padding-bottom: 2rem; gap: 0; }
+  .mobile-menu a { font-size: 1.3rem; padding: 0.4rem 0; }
 }
 
 /* ---------- LAYOUT ---------- */
@@ -1533,6 +1544,13 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   border-radius: var(--radius-md);
   padding: 2.5rem;
   border: 1px solid var(--border-soft);
+  min-width: 0;
+}
+
+.contact-info-item a,
+.contact-info-item p {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .contact-info-item {
@@ -1633,7 +1651,7 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
 }
 
 /* ---------- FORM SUCCESS CARD (replaces form in-place) ---------- */
-.form-column { position: relative; }
+.form-column { position: relative; min-width: 0; }
 
 .form-success {
   text-align: center;
@@ -1701,12 +1719,16 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   line-height: 1.7;
   color: var(--text-medium);
   margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .form-success-card a {
   color: var(--clay);
   font-weight: 500;
   border-bottom: 1px solid rgba(160, 123, 107, 0.35);
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .form-success-card a:hover { border-bottom-color: var(--clay); }
