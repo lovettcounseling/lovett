@@ -380,12 +380,62 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
 
 .mobile-menu.open { display: flex; }
 
+/* Brand header at the top of the mobile menu */
+.mobile-menu-brand {
+  display: flex !important;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0 0 1.25rem !important;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-medium) !important;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.mobile-menu-brand-mark {
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.mobile-menu-brand-mark svg { width: 100%; height: auto; display: block; }
+
+.mobile-menu-brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  min-width: 0;
+}
+
+.mobile-menu-brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text-dark);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+.mobile-menu-brand-name em {
+  font-style: italic;
+  color: var(--clay);
+}
+
+.mobile-menu-brand-sub {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-top: 0.4rem;
+}
+
 .mobile-menu a {
   font-family: var(--font-serif);
-  font-size: 1.55rem;
+  font-size: 1.5rem;
   line-height: 1.2;
   color: var(--text-dark);
-  padding: 0.55rem 0;
+  padding: 0.5rem 0;
   border-bottom: 1px solid var(--border-soft);
   flex-shrink: 0;
 }
