@@ -99,7 +99,21 @@
 
   <section class="content-section">
     <div class="container">
-      <div class="contact-grid">
+
+      <div class="form-success" id="form-success" hidden>
+        <div class="form-success-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7" stroke="#FAF6EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        </div>
+        <h2 class="form-success-title">Message <em>Received</em></h2>
+        <p class="form-success-lead">Your message is on its way. I'll respond personally within two business days — usually sooner.</p>
+        <div class="form-success-card">
+          <p>If you don't hear back within 48 hours, please reach out directly at <a href="mailto:lovettcounselingandconsulting@gmail.com">lovettcounselingandconsulting@gmail.com</a> — sometimes technology has other plans, and I'd hate to miss you.</p>
+          <p class="form-success-signature">— Whitney</p>
+        </div>
+        <a href="index.html" class="btn btn-primary">Back to Home</a>
+      </div>
+
+      <div class="contact-grid" id="contact-grid">
 
         <div>
           <h2 style="margin-bottom: 1.5rem;">Send a message</h2>
@@ -295,6 +309,15 @@
     const form = document.getElementById("contact-form");
     const status = form && form.querySelector(".form-status");
     const submitBtn = form && form.querySelector("button[type=submit]");
+    const contactGrid = document.getElementById("contact-grid");
+    const successCard = document.getElementById("form-success");
+
+    const TOPIC_LABELS = {
+      individual: "Individual Therapy",
+      couples:    "Couples Therapy",
+      consulting: "Consulting / Training",
+      other:      "General Inquiry"
+    };
 
     // Pre-fill topic from ?topic= query string
     const params = new URLSearchParams(window.location.search);
@@ -343,24 +366,29 @@
         }
         // Build template params — these map to {{name}} tokens in the EmailJS template
         const data = new FormData(form);
+        const topicKey = data.get("topic") || "other";
         const templateParams = {
           name:              data.get("name") || "",
           email:             data.get("_replyto") || "",
           phone:             data.get("phone") || "",
-          topic:             data.get("topic") || "",
+          topic:             topicKey,
+          topic_label:       TOPIC_LABELS[topicKey] || "General Inquiry",
           message:           data.get("message") || "",
           preferred_contact: data.get("preferred_contact") || "email",
           submitted_at:      new Date().toLocaleString("en-US", { dateStyle: "full", timeStyle: "short" })
         };
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
         form.reset();
-        status.textContent = "Thank you — your message is on its way. I'll respond within two business days.";
-        status.style.color = "#3E4A35";
-        submitBtn.textContent = "Sent ✓";
-        setTimeout(() => {
-          submitBtn.disabled = false;
-          submitBtn.textContent = originalLabel;
-        }, 4000);
+        if (contactGrid && successCard) {
+          contactGrid.hidden = true;
+          successCard.hidden = false;
+          // Scroll the success card into view
+          successCard.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          status.textContent = "Thank you — your message is on its way. I'll respond within two business days.";
+          status.style.color = "#3E4A35";
+          submitBtn.textContent = "Sent ✓";
+        }
       } catch (err) {
         console.error(err);
         status.textContent = "Sorry — something went wrong sending your message. Please email directly at lovettcounselingandconsulting@gmail.com.";

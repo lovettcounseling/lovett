@@ -1632,6 +1632,93 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   line-height: 1.55;
 }
 
+/* ---------- FORM SUCCESS CARD ---------- */
+.form-success {
+  text-align: center;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+  background: var(--cream-light);
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--clay);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.form-success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--clay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.75rem;
+}
+
+.form-success-icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.form-success-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.85rem, 4vw, 2.4rem);
+  line-height: 1.15;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.form-success-title em {
+  font-style: italic;
+  color: var(--clay);
+}
+
+.form-success-lead {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-medium);
+  margin: 0 auto 2rem;
+  max-width: 480px;
+}
+
+.form-success-card {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  padding: 1.75rem 2rem;
+  margin: 0 auto 2.25rem;
+  max-width: 540px;
+  text-align: center;
+}
+
+.form-success-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-medium);
+  margin: 0;
+}
+
+.form-success-card a {
+  color: var(--clay);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(160, 123, 107, 0.35);
+}
+
+.form-success-card a:hover { border-bottom-color: var(--clay); }
+
+.form-success-signature {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text-medium);
+  margin-top: 0.85rem !important;
+}
+
+@media (max-width: 600px) {
+  .form-success-card { padding: 1.5rem 1.25rem; }
+  .form-success-lead { font-size: 0.98rem; }
+}
+
 /* ---------- CTA STRIP ---------- */
 .cta-strip {
   background: var(--cream-light);
