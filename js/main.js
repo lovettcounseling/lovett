@@ -149,4 +149,23 @@
     );
     document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
   }
+  // ---- Testimonial carousel ----
+  (function(){
+    var slides=document.querySelectorAll('#lovettTesti .testi-slide');
+    var dots=document.querySelectorAll('#lovettDots .testi-dot');
+    if(slides.length<2)return;
+    var i=0,timer=null;
+    function go(n){
+      slides[i].classList.remove('active');dots[i].classList.remove('active');
+      i=(n+slides.length)%slides.length;
+      slides[i].classList.add('active');dots[i].classList.add('active');
+    }
+    function start(){stop();timer=setInterval(function(){go(i+1);},6500);}
+    function stop(){if(timer){clearInterval(timer);timer=null;}}
+    dots.forEach(function(d,idx){d.addEventListener('click',function(){go(idx);start();});});
+    var wrap=document.getElementById('lovettTesti');
+    if(wrap){wrap.addEventListener('mouseenter',stop);wrap.addEventListener('mouseleave',start);}
+    start();
+  })();
+
 })();

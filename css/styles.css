@@ -2140,3 +2140,19 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
 }
 
 img.img-failed { opacity: 0; }
+
+/* ---------- TESTIMONIAL CAROUSEL ---------- */
+.testi-slides { display: grid; }
+.testi-slide {
+  grid-area: 1 / 1; margin: 0;
+  opacity: 0; transition: opacity .5s ease; pointer-events: none;
+}
+.testi-slide.active { opacity: 1; pointer-events: auto; }
+.testi-dots { display: flex; gap: 10px; justify-content: center; margin-top: 1.4rem; }
+.testi-dot {
+  width: 9px; height: 9px; padding: 0; border-radius: 50%;
+  border: 1px solid var(--peach); background: transparent; cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.testi-dot:hover { transform: scale(1.15); }
+.testi-dot.active { background: var(--peach); }
