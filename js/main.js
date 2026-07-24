@@ -126,6 +126,33 @@
     }
   }
 
+  // ---- Smooth hero zoom on scroll (all devices) ----
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    let ticking = false;
+    const updateHeroZoom = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const heroElement = document.querySelector('.hero');
+      if (heroElement) {
+        const heroHeight = heroElement.offsetHeight;
+        // Calculate zoom: 1.0 at top (no zoom), up to 1.15 at bottom of hero
+        const zoomFactor = 1 + (scrollY / heroHeight) * 0.15;
+        // Clamp to reasonable values
+        const clampedZoom = Math.min(zoomFactor, 1.15);
+        heroBg.style.transform = `scale(${clampedZoom})`;
+      }
+      ticking = false;
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeroZoom);
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateHeroZoom(); // Initialize
+  }
+
   // ---- Image error fallback ----
   document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', () => {

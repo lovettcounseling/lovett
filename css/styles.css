@@ -612,6 +612,8 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   padding: calc(var(--nav-h) + 4rem) 0 8rem;
   overflow: hidden;
   margin-top: calc(var(--nav-h) * -1);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 /* Desktop: slightly smaller headline + extra vertical breathing room around block */
@@ -636,6 +638,8 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   position: absolute;
   inset: 0;
   z-index: 0;
+  transform-origin: center;
+  will-change: transform;
 }
 
 .hero-bg img {
