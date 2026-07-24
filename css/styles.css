@@ -367,7 +367,7 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   top: var(--nav-h);
   left: 0;
   right: 0;
-  height: calc(100dvh - var(--nav-h));
+  height: calc(100svh - var(--nav-h));
   background: var(--cream-light);
   z-index: 95;
   padding: 1.75rem 2rem calc(1.75rem + env(safe-area-inset-bottom, 0px));
@@ -603,9 +603,12 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
 /* ---------- HERO (full-bleed, full-screen) ---------- */
 .hero {
   position: relative;
-  /* Fallback for older browsers, then steady dvh that ignores URL bar */
+  /* Fallback for older browsers, then svh.
+     NOT dvh: dvh is the *dynamic* viewport height, so it grows as the mobile
+     URL bar collapses on scroll — which resizes the hero and makes the
+     object-fit:cover background visibly zoom. svh is the stable small value. */
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
   align-items: center;          /* vertical center → label + h1 + p + CTA fit on one screen */
   /* Generous top buffer (clears the nav with air) + bottom room for scroll arrow */
@@ -639,7 +642,12 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   inset: 0;
   z-index: 0;
   transform-origin: center;
-  will-change: transform;
+}
+
+/* Only promote to its own layer where the scroll zoom actually runs (desktop).
+   Must match the matchMedia query in main.js. */
+@media (min-width: 769px) and (min-height: 561px) and (hover: hover) {
+  .hero-bg { will-change: transform; }
 }
 
 .hero-bg img {
