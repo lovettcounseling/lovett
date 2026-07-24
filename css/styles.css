@@ -2132,6 +2132,31 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   .hero-scroll-arrow { width: 28px; height: 28px; }
 }
 
+/* Short viewports (phones in landscape) — width-based mobile query misses these,
+   so the hero would keep desktop padding and its text would collide with the
+   scroll arrow. Let the hero size to its content instead of forcing 100dvh. */
+@media (max-height: 560px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: calc(var(--nav-h) + 1.5rem) 0 3rem;
+  }
+  .hero h1 {
+    font-size: clamp(1.65rem, 4vw, 2.3rem);
+    line-height: 1.08;
+  }
+  .hero .section-label { margin-bottom: 0.5rem; }
+  .hero p {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-top: 0.8rem;
+    max-width: 480px;
+  }
+  .hero .hero-cta-row { margin-top: 1.35rem; }
+  /* Arrow has no room and is what the text was overlapping */
+  .hero-scroll { display: none; }
+  .ornament, .decor { display: none; }
+}
+
 @media (max-width: 560px) {
   .brand-text { display: none; }
   .footer-main { grid-template-columns: 1fr; gap: 2rem; }

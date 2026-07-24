@@ -128,9 +128,18 @@
     }
   }
 
-  // ---- Smooth hero zoom on scroll (all devices) ----
+  // ---- Smooth hero zoom on scroll (desktop only) ----
+  // Disabled on mobile/short viewports and for reduced-motion users.
   const heroBg = document.querySelector('.hero-bg');
-  if (heroBg) {
+  const allowHeroZoom = !reducedMotion &&
+    window.matchMedia('(min-width: 769px) and (min-height: 561px) and (hover: hover)').matches;
+
+  if (heroBg && !allowHeroZoom) {
+    heroBg.style.transform = '';
+    heroBg.style.willChange = 'auto';
+  }
+
+  if (heroBg && allowHeroZoom) {
     let ticking = false;
     const updateHeroZoom = () => {
       const scrollY = window.scrollY || window.pageYOffset;
