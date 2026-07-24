@@ -78,9 +78,11 @@
   // ---- Subtle scroll parallax on .ornament elements ----
   // Each ornament has data-parallax (a speed factor, e.g. 0.12).
   // Elements drift slowly as the page scrolls. Reduced-motion users skip it.
+  // Disabled on mobile (viewport < 768px)
   const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.innerWidth < 768;
 
-  if (!reducedMotion) {
+  if (!reducedMotion && !isMobile) {
     const ornaments = Array.from(document.querySelectorAll('.ornament[data-parallax]'));
     if (ornaments.length) {
       // Cache each ornament's anchor point (its position in document on load)
