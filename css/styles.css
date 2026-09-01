@@ -2193,3 +2193,82 @@ img.img-failed { opacity: 0; }
 }
 .testi-dot:hover { transform: scale(1.15); }
 .testi-dot.active { background: var(--peach); }
+
+
+/* ---------- BLOG ---------- */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+}
+.post-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--cream-light);
+  border: 1px solid var(--border-soft);
+  transition: transform var(--t-med), box-shadow var(--t-med);
+}
+.post-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-soft); }
+.post-card-media {
+  height: 190px; position: relative; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 1.5rem; overflow: hidden;
+}
+.post-card-media.clay { background: linear-gradient(150deg, var(--clay) 0%, var(--peach) 100%); }
+.post-card-media.sage { background: linear-gradient(150deg, var(--sage) 0%, var(--sage-light) 100%); }
+.post-card-media.forest { background: linear-gradient(150deg, var(--forest) 0%, var(--clay-dark) 100%); }
+.post-card-media.peach { background: linear-gradient(150deg, var(--peach) 0%, var(--clay-light) 100%); }
+.post-card-media::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(200deg, rgba(44,38,24,0) 35%, rgba(44,38,24,0.5) 100%);
+}
+.post-card-cat, .post-card h3 { position: relative; z-index: 2; }
+.post-card-cat {
+  font-family: var(--font-sans); font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--cream-light);
+  opacity: 0.9; margin-bottom: 0.5rem;
+}
+.post-card-media h3 { font-size: 1.3rem; line-height: 1.22; color: var(--cream-light); }
+.post-card-body { padding: 1.5rem 1.75rem 1.75rem; display: flex; flex-direction: column; gap: 0.65rem; flex: 1; }
+.post-card p { font-size: 0.95rem; flex: 1; margin: 0; }
+
+.post-hero-media {
+  position: relative; padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(2.25rem, 4vw, 3rem);
+  overflow: hidden;
+}
+.post-hero-media.clay { background: linear-gradient(120deg, var(--clay) 0%, var(--peach) 100%); }
+.post-hero-media.sage { background: linear-gradient(120deg, var(--sage) 0%, var(--sage-light) 100%); }
+.post-hero-media.forest { background: linear-gradient(120deg, var(--forest) 0%, var(--clay-dark) 100%); }
+.post-hero-media.peach { background: linear-gradient(120deg, var(--peach) 0%, var(--clay-light) 100%); }
+.post-hero-media::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(200deg, rgba(44,38,24,0) 45%, rgba(44,38,24,0.42) 100%);
+}
+.post-hero-media .container { position: relative; z-index: 2; }
+.post-hero-media .post-meta { color: rgba(242,235,224,0.85); }
+.post-hero-media h1 { color: var(--cream-light); margin: 0.5rem 0 0; font-size: clamp(2rem, 4vw, 3rem); }
+/* Swap this block for a real photo later: give .post-hero-media a background-image
+   (or drop in a <picture> behind the ::before overlay) and keep the text as-is. */
+
+.post-article { max-width: 720px; margin: 0 auto; }
+.post-article .post-meta {
+  display: block; margin-bottom: 1rem; font-size: 0.8rem;
+  letter-spacing: 0.03em; color: var(--text-light);
+}
+.post-article .post-lead { font-size: 1.1rem; line-height: 1.75; color: var(--text-medium); margin-bottom: 1.5rem; }
+.post-article h2 { font-size: clamp(1.55rem, 2.4vw, 2rem); margin: 2.5rem 0 1rem; }
+.post-article h3 { margin: 1.85rem 0 0.85rem; }
+.post-article p { font-size: 1.025rem; line-height: 1.78; margin-bottom: 1.4rem; }
+.post-article ul, .post-article ol { margin: 0 0 1.5rem 1.35rem; }
+.post-article li { font-size: 1.025rem; line-height: 1.75; color: var(--text-medium); margin-bottom: 0.65rem; }
+.post-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2.5rem; }
+.post-tag {
+  font-family: var(--font-sans); font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage);
+  border: 1px solid var(--border-medium); padding: 0.4rem 0.85rem;
+}
+.related-posts h4 {
+  font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-light);
+  margin-bottom: 1.1rem;
+}
+.related-posts a { display: block; margin-bottom: 0.75rem; }
