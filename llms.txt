@@ -1,7 +1,7 @@
 # Lovett Counseling & Consulting
 
 > Trauma-informed therapy and consulting for individuals, couples, and organizations.
-> Whitney Lovett, MA, LPC, CCTP — Denver, Colorado. In-person and telehealth across CO.
+> Whitney Lovett, MA, LPC, CCTP — Denver, Colorado. Telehealth across Colorado.
 
 ## About
 
@@ -44,6 +44,11 @@ The practice serves:
 
 - Email: lovettcounselingandconsulting@gmail.com
 - Phone: (530) 802-0437
-- Location: Denver, CO (in-person and telehealth across Colorado)
+- Location: Denver, CO (telehealth across Colorado)
 - Response time: within 2 business days
 - Crisis: This practice is not a crisis line. For immediate help, call or text 988 (Suicide & Crisis Lifeline) or go to your nearest emergency room.
+
+## Policies
+
+- [Privacy Policy](https://lovettcounselingandconsulting.com/privacy-policy.html)
+- [Terms & Conditions](https://lovettcounselingandconsulting.com/terms-and-conditions.html)
