@@ -41,7 +41,7 @@
 <!-- Preload hero image for fastest LCP. Modern browsers will use the WebP. -->
 <link rel="preload" as="image" href="images/Hero.webp" type="image/webp" fetchpriority="high">
 
-<link rel="stylesheet" href="css/styles.min.css?v=20260901">
+<link rel="stylesheet" href="css/styles.min.css?v=20260901b">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 70'><path d='M28 5 C13 5 6 17 6 32 L6 65 L50 65 L50 32 C50 17 43 5 28 5 Z' stroke='%233E4A35' stroke-width='2' fill='none'/><circle cx='38' cy='22' r='3' fill='%23A07B6B'/></svg>">
 
 <script type="application/ld+json">
@@ -78,31 +78,33 @@
       <span class="brand-mark">
         <svg viewBox="0 0 56 70" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M28 5 C13 5 6 17 6 32 L6 65 L50 65 L50 32 C50 17 43 5 28 5 Z" stroke="#3E4A35" stroke-width="1.5" fill="none"/>
-          <circle cx="38" cy="22" r="2.8" fill="#A07B6B"/>
+          <circle cx="38" cy="22" r="2.8" fill="#B16548"/>
           <path d="M22 56 L22 64 M22 60 L18 56 M22 60 L26 56" stroke="#6B7A5A" stroke-width="1" stroke-linecap="round" fill="none"/>
         </svg>
       </span>
       <span class="brand-text">
-        <span class="brand-name">lovett <em style="font-style:italic; font-weight:400;">counseling</em></span>
-        <span class="brand-sub">&amp; consulting · Denver</span>
+        <span class="brand-name">Lovett <em style="font-style:italic;">Counseling</em></span>
+        <span class="brand-sub">&amp; Consulting</span>
       </span>
     </a>
-
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="individual-therapy.html">Individual</a></li>
-      <li><a href="couples-therapy.html">Couples</a></li>
-      <li><a href="consulting.html">Consulting</a></li>
+      <li class="nav-dropdown">
+        <a href="services.html">Services</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="services.html">All Services</a></li>
+          <li><a href="individual-therapy.html">Individual Therapy</a></li>
+          <li><a href="couples-therapy.html">Couples Therapy</a></li>
+          <li><a href="consulting.html">Consulting &amp; Training</a></li>
+        </ul>
+      </li>
       <li><a href="about.html">About</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="faq.html">FAQ</a></li>
       <li><a href="fees.html">Fees</a></li>
     </ul>
-
     <a href="contact.html" class="nav-cta">Free 15-min call</a>
-    <button class="hamburger" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -121,6 +123,7 @@
     </span>
   </a>
   <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
   <a href="individual-therapy.html">Individual Therapy</a>
   <a href="couples-therapy.html">Couples Therapy</a>
   <a href="consulting.html">Consulting &amp; Training</a>

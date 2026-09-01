@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400&family=Manrope:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.min.css?v=20260901">
+<link rel="stylesheet" href="css/styles.min.css?v=20260901b">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 70'><path d='M28 5 C13 5 6 17 6 32 L6 65 L50 65 L50 32 C50 17 43 5 28 5 Z' stroke='%233E4A35' stroke-width='2' fill='none'/><circle cx='38' cy='22' r='3' fill='%23B16548'/></svg>">
 
 <script type="application/ld+json">
@@ -71,15 +71,21 @@
     </a>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="individual-therapy.html">Individual</a></li>
-      <li><a href="couples-therapy.html">Couples</a></li>
-      <li><a href="consulting.html">Consulting</a></li>
+      <li class="nav-dropdown">
+        <a href="services.html">Services</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="services.html">All Services</a></li>
+          <li><a href="individual-therapy.html">Individual Therapy</a></li>
+          <li><a href="couples-therapy.html">Couples Therapy</a></li>
+          <li><a href="consulting.html">Consulting &amp; Training</a></li>
+        </ul>
+      </li>
       <li><a href="about.html">About</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="faq.html">FAQ</a></li>
       <li><a href="fees.html">Fees</a></li>
     </ul>
-    <a href="contact.html" class="nav-cta active">Free 15-min call</a>
+    <a href="contact.html" class="nav-cta">Free 15-min call</a>
     <button class="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -99,6 +105,7 @@
     </span>
   </a>
   <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
   <a href="individual-therapy.html">Individual Therapy</a>
   <a href="couples-therapy.html">Couples Therapy</a>
   <a href="consulting.html">Consulting &amp; Training</a>
