@@ -2280,6 +2280,16 @@ img.img-failed { opacity: 0; }
 
 /* ---------- NAV DROPDOWN (Services) ---------- */
 .nav-dropdown { position: relative; }
+/* Invisible bridge over the gap between the link and the panel, so hover never breaks
+   while moving the mouse down into the menu (fixes the "closes before I can click" issue). */
+.nav-dropdown::before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -1rem;
+  right: -1rem;
+  height: 1.5rem;
+}
 .nav-dropdown-menu {
   position: absolute;
   top: 100%;
@@ -2291,11 +2301,11 @@ img.img-failed { opacity: 0; }
   list-style: none;
   min-width: 210px;
   padding: 0.5rem 0;
-  margin-top: 0.9rem;
+  margin-top: 0.6rem;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity var(--t-fast), transform var(--t-fast), visibility var(--t-fast);
+  transition: opacity var(--t-fast), transform var(--t-fast), visibility 0s linear 180ms;
   z-index: 60;
 }
 .nav-dropdown:hover .nav-dropdown-menu,
@@ -2304,6 +2314,7 @@ img.img-failed { opacity: 0; }
   visibility: visible;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
+  transition: opacity var(--t-fast), transform var(--t-fast), visibility 0s linear 0s;
 }
 .nav-dropdown-menu li { list-style: none; }
 .nav-dropdown-menu a {
