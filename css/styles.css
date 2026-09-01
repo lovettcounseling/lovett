@@ -1427,6 +1427,8 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   letter-spacing: 0.24em;
   text-transform: uppercase;
   margin-bottom: 0.85rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .approach-card p {
@@ -2175,6 +2177,31 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   .footer-main { grid-template-columns: 1fr; gap: 2rem; }
   .footer-col:first-child { grid-column: auto; }
   .concerns-list { grid-template-columns: 1fr; }
+  /* On small mobile, the card+left-border treatment reads as a long
+     column of tall brown bars — swap to a light divided list instead */
+  .concerns-list li,
+  .content-section.alt .concerns-list li {
+    background: none;
+    border-left: none;
+    border-radius: 0;
+    border-bottom: 1px solid var(--border-soft);
+    padding: 1.15rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+  .concerns-list li::before {
+    content: "";
+    flex-shrink: 0;
+    width: 6px;
+    height: 6px;
+    margin-top: 0.5rem;
+    border-radius: 50%;
+    background: var(--clay);
+  }
+  .concerns-list li:last-child { border-bottom: none; }
+  .approach-grid,
+  .approach-grid--three { grid-template-columns: 1fr; max-width: 340px; margin-left: auto; margin-right: auto; }
   .credential-row { flex-direction: column; gap: 1.25rem; }
   .hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
   /* Hide ornaments on small mobile for cleanliness */

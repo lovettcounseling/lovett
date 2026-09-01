@@ -6,13 +6,47 @@
   // ---- Mobile menu toggle ----
   const hamburger = document.querySelector('.hamburger');
   const mobileMenu = document.querySelector('.mobile-menu');
+  let mobileMenuScrollY = 0;
+
+  // iOS Safari mis-positions `position: fixed` elements once the page has
+  // been scrolled (a long-standing WebKit quirk, worse with `overflow-x:
+  // hidden` on <body>). Just locking body overflow isn't enough - freeze
+  // body at its current scroll offset with position:fixed while the menu
+  // is open, then restore the real scroll position on close.
+  function openMobileMenu() {
+    mobileMenuScrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${mobileMenuScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+  }
+
+  function closeMobileMenu() {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    // Jump back instantly - a smooth-scroll animation here reads as the
+    // page lurching after closing the menu, since <html> has
+    // scroll-behavior: smooth for normal anchor links.
+    const prevBehavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, mobileMenuScrollY);
+    document.documentElement.style.scrollBehavior = prevBehavior;
+  }
 
   if (hamburger && mobileMenu) {
     hamburger.addEventListener('click', () => {
       const open = hamburger.classList.toggle('open');
       mobileMenu.classList.toggle('open', open);
       hamburger.setAttribute('aria-expanded', open);
-      document.body.style.overflow = open ? 'hidden' : '';
+      if (open) {
+        openMobileMenu();
+      } else {
+        closeMobileMenu();
+      }
     });
 
     // close on link click
@@ -20,7 +54,7 @@
       a.addEventListener('click', () => {
         hamburger.classList.remove('open');
         mobileMenu.classList.remove('open');
-        document.body.style.overflow = '';
+        closeMobileMenu();
       });
     });
   }
