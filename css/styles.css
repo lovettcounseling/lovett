@@ -2341,3 +2341,9 @@ body.has-hero .topnav:not(.is-scrolled) .nav-dropdown-menu a {
 body.has-hero .topnav:not(.is-scrolled) .nav-dropdown-menu a:hover {
   color: var(--clay);
 }
+
+/* When the full mobile menu is open, hide the topnav's own logo so it doesn't
+   duplicate the logo already shown inside the menu panel — only the close (X) stays. */
+body:has(.mobile-menu.open) .topnav-inner .brand {
+  visibility: hidden;
+}
