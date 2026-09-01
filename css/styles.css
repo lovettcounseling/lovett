@@ -1376,6 +1376,11 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   background: var(--cream-light);
 }
 
+/* 3-column variant — for 9-item concern lists (3x3, no orphan) */
+.concerns-list--three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 /* ---------- APPROACH PILLARS ---------- */
 .approach-grid {
   display: grid;
