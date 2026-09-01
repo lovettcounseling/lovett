@@ -364,13 +364,13 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
 .mobile-menu {
   display: none;
   position: fixed;
-  top: var(--nav-h);
+  top: 0;
   left: 0;
   right: 0;
-  height: calc(100svh - var(--nav-h));
+  height: 100svh;
   background: var(--cream-light);
   z-index: 95;
-  padding: 1.75rem 2rem calc(1.75rem + env(safe-area-inset-bottom, 0px));
+  padding: calc(var(--nav-h) + 1.75rem) 2rem calc(1.75rem + env(safe-area-inset-bottom, 0px));
   flex-direction: column;
   gap: 0.25rem;
   overflow-y: auto;
@@ -2346,4 +2346,10 @@ body.has-hero .topnav:not(.is-scrolled) .nav-dropdown-menu a:hover {
    duplicate the logo already shown inside the menu panel — only the close (X) stays. */
 body:has(.mobile-menu.open) .topnav-inner .brand {
   visibility: hidden;
+}
+
+/* The hamburger/X sits over the mobile-menu's cream panel while open, not the hero photo —
+   force it back to a dark, visible color regardless of the has-hero cream-on-photo styling. */
+body:has(.mobile-menu.open) .hamburger span {
+  background: var(--text-dark) !important;
 }
