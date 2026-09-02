@@ -6,6 +6,7 @@ Allow: /
 Disallow: /css/
 Disallow: /js/
 Disallow: /Whitney - Assets/
+Disallow: /emailjs-template.html
 
 # Image crawler
 User-agent: Googlebot-Image
