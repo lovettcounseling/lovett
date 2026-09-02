@@ -1354,8 +1354,8 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
 /* ---------- LIST OF CONCERNS ---------- */
 .concerns-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);  /* desktop = 4 columns, even 4+4 rows */
-  gap: 0.85rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 2.5rem;
   list-style: none;
   margin: 2.5rem 0;
   position: relative;
@@ -1363,22 +1363,29 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
 }
 
 .concerns-list li {
-  background: var(--cream);
-  padding: 1.15rem 1.25rem;
-  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.05rem 0;
+  border-bottom: 1px solid var(--border-soft);
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   color: var(--text-dark);
-  border-left: 2.5px solid var(--clay);
-  font-family: var(--font-sans);
 }
 
-.content-section.alt .concerns-list li {
-  background: var(--cream-light);
+.concerns-list li::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--clay);
+  margin-top: 0.55rem;
 }
 
 /* 3-column variant — for 9-item concern lists (3x3, no orphan) */
 .concerns-list--three {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 /* ---------- APPROACH PILLARS ---------- */
@@ -1872,7 +1879,9 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   color: var(--cream-light);
   padding: 0 0 1.5rem;
   position: relative;
-  margin-top: clamp(2rem, 4vw, 3rem);
+  /* Exactly the height the wave occupies, so no body background shows
+     through above the curve. */
+  margin-top: 47px;
 }
 
 .footer::before {
@@ -1883,9 +1892,16 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   right: 0;
   height: 48px;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 48' preserveAspectRatio='none'><path d='M0,48 C200,5 400,43 600,18 C800,0 1000,38 1200,15 L1200,48 L0,48 Z' fill='%233E4A35'/></svg>");
+  /* Matches the section above, so the area over the curve reads as a
+     continuation of that section rather than its own band. */
+  background-color: var(--cream-light);
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+
+/* The last section runs straight into the wave, so its bottom rule would
+   float 47px above the curve. */
+main > section:last-of-type { border-bottom: none; }
 
 .footer-tagline-block {
   padding: clamp(4rem, 6vw, 5rem) 0 clamp(3rem, 5vw, 4rem);
@@ -2177,29 +2193,6 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   .footer-main { grid-template-columns: 1fr; gap: 2rem; }
   .footer-col:first-child { grid-column: auto; }
   .concerns-list { grid-template-columns: 1fr; }
-  /* On small mobile, the card+left-border treatment reads as a long
-     column of tall brown bars — swap to a light divided list instead */
-  .concerns-list li,
-  .content-section.alt .concerns-list li {
-    background: none;
-    border-left: none;
-    border-radius: 0;
-    border-bottom: 1px solid var(--border-soft);
-    padding: 1.15rem 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.85rem;
-  }
-  .concerns-list li::before {
-    content: "";
-    flex-shrink: 0;
-    width: 6px;
-    height: 6px;
-    margin-top: 0.5rem;
-    border-radius: 50%;
-    background: var(--clay);
-  }
-  .concerns-list li:last-child { border-bottom: none; }
   .approach-grid,
   .approach-grid--three { grid-template-columns: 1fr; max-width: 340px; margin-left: auto; margin-right: auto; }
   .credential-row { flex-direction: column; gap: 1.25rem; }
