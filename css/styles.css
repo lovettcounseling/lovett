@@ -636,6 +636,23 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
   }
 }
 
+/* Laptop viewports: the hero block plus its padding can exceed 100svh, which
+   pushes the scroll cue below the fold. Tighten as available height drops. */
+@media (min-width: 1024px) and (max-height: 1000px) {
+  .hero { padding: calc(var(--nav-h) + 3rem) 0 7rem; }
+  .hero h1 { font-size: clamp(2.4rem, 3.9vw, 3.6rem); }
+  .hero p { margin-top: 1.2rem; margin-bottom: 1.75rem; }
+  .hero .hero-cta-row { margin-top: 1.75rem; }
+}
+
+@media (min-width: 1024px) and (max-height: 820px) {
+  .hero { padding: calc(var(--nav-h) + 1.75rem) 0 5.5rem; }
+  .hero h1 { font-size: clamp(2.1rem, 3.3vw, 3rem); margin-bottom: 1.25rem; }
+  .hero p { font-size: 1rem; margin-top: 1rem; margin-bottom: 1.25rem; line-height: 1.6; }
+  .hero .hero-cta-row { margin-top: 1.25rem; }
+  .hero-scroll { bottom: 1.25rem; }
+}
+
 /* Background image fills entire hero */
 .hero-bg {
   position: absolute;
@@ -761,6 +778,8 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
 .hero h1 {
   margin-bottom: 1.75rem;
   letter-spacing: -0.012em;
+  /* Even out the line lengths so the last line is never a lone word. */
+  text-wrap: balance;
 }
 
 .hero .script-large {
@@ -1246,6 +1265,7 @@ body.has-hero .topnav:not(.is-scrolled) .hamburger span {
 }
 
 .page-hero h1 {
+  text-wrap: balance;
   font-size: clamp(2.1rem, 4.2vw, 3.6rem);
   margin-bottom: 1.5rem;
 }
