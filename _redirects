@@ -1,15 +1,28 @@
 # Cloudflare Pages redirects — Lovett Counseling & Consulting
 #
-# www → non-www. Both hostnames were serving the whole site with a 200 and no
-# redirect between them, so Google saw two complete copies. Every canonical tag
-# and every sitemap entry says non-www, so that is the address that wins.
-#
-# The trailing "!" forces the rule to take precedence over a matching static
-# file, which is what makes it actually fire on Cloudflare Pages — the same
-# pattern that works on crescitacounseling.com.
-#
-# Do NOT add rules like "/about -> /about.html". Cloudflare Pages serves clean
-# URLs natively and 308-redirects /about.html -> /about; pointing it back the
-# other way creates an infinite loop.
+# No path redirects are needed here yet. Cloudflare Pages serves clean URLs
+# natively and 308-redirects /about.html -> /about, so never point a clean URL
+# back at its .html file — that loops.
 
-https://www.lovettcounselingandconsulting.com/*  https://lovettcounselingandconsulting.com/:splat  301!
+# ─────────────────────────────────────────────────────────────────────────────
+# NOTE ON www REDIRECTS — do not re-add a rule like:
+#     https://www.example.com/*  https://example.com/:splat  301!
+#
+# It does not work. Cloudflare Pages only matches _redirects sources as PATHS.
+# An absolute URL in the source position is silently ignored, so the rule looks
+# correct, deploys without error, and never fires. Verified empirically: the
+# rule was added here and to two sibling sites, all three deployed, none
+# redirected. Sites that DO canonicalize correctly (coolbirdcounseling.com,
+# safersoundsclub.com) have no such rule in _redirects at all — theirs is done
+# at the Cloudflare zone level.
+#
+# The fix lives in the Cloudflare dashboard, not this file:
+#   Zone -> Rules -> Redirect Rules -> Create rule
+#     If  Hostname equals <the hostname to retire>
+#     Then Dynamic redirect, 301, preserving path and query
+#
+# Alternative if it must live in the repo: a Pages Function at
+# functions/_middleware.js can redirect on hostname. That turns on the Functions
+# runtime for every request on this project, so the dashboard rule is preferable
+# for a purely static site.
+# ─────────────────────────────────────────────────────────────────────────────
