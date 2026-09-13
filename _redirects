@@ -1,0 +1,15 @@
+# Cloudflare Pages redirects — Lovett Counseling & Consulting
+#
+# www → non-www. Both hostnames were serving the whole site with a 200 and no
+# redirect between them, so Google saw two complete copies. Every canonical tag
+# and every sitemap entry says non-www, so that is the address that wins.
+#
+# The trailing "!" forces the rule to take precedence over a matching static
+# file, which is what makes it actually fire on Cloudflare Pages — the same
+# pattern that works on crescitacounseling.com.
+#
+# Do NOT add rules like "/about -> /about.html". Cloudflare Pages serves clean
+# URLs natively and 308-redirects /about.html -> /about; pointing it back the
+# other way creates an infinite loop.
+
+https://www.lovettcounselingandconsulting.com/*  https://lovettcounselingandconsulting.com/:splat  301!
