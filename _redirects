@@ -26,3 +26,6 @@
 # runtime for every request on this project, so the dashboard rule is preferable
 # for a purely static site.
 # ─────────────────────────────────────────────────────────────────────────────
+
+# Repo notes are not part of the site.
+/README.md  /  301
