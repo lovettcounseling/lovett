@@ -1,0 +1,19 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:988 Suicide and Crisis Lifeline
+N:;988 Suicide and Crisis Lifeline;;;
+ORG:988 Suicide and Crisis Lifeline
+TEL;TYPE=VOICE,CELL:988
+URL:https://988lifeline.org
+NOTE:Call or text 988. Free, 24/7, nationwide. For any emotional crisis, not only thoughts of suicide.
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+FN:Colorado Crisis Services
+N:;Colorado Crisis Services;;;
+ORG:Colorado Crisis Services
+TEL;TYPE=VOICE:+18444938255
+TEL;TYPE=CELL:38255
+URL:https://coloradocrisisservices.org
+NOTE:Call 1-844-493-8255 or text TALK to 38255. Free, 24/7, statewide.
+END:VCARD
