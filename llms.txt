@@ -24,9 +24,14 @@ The practice serves:
 - [About Whitney](https://lovettcounselingandconsulting.com/about): Background, approach, credentials.
 - [FAQ](https://lovettcounselingandconsulting.com/faq): First sessions, frequency, telehealth, confidentiality, fit.
 - [Fees & Insurance](https://lovettcounselingandconsulting.com/fees): Session rates, out-of-network superbills, sliding scale, Good Faith Estimate.
+- [Sliding Scale](https://lovettcounselingandconsulting.com/sliding-scale): How reduced-fee sessions work, what Whitney asks, and what happens if no slot is open.
+- [For Professionals](https://lovettcounselingandconsulting.com/for-professionals): How to refer an adult client; who she takes and doesn't; releases and attendance letters.
+- [Resources](https://lovettcounselingandconsulting.com/resources): Colorado crisis lines, 988, between-session practices, lower-cost therapy options in Denver.
 - [Contact](https://lovettcounselingandconsulting.com/contact): Inquiry form, email, phone, response within two business days.
 
 ## Journal (Blog)
+
+RSS: https://lovettcounselingandconsulting.com/feed.xml
 
 - [When Help Has Hurt Before](https://lovettcounselingandconsulting.com/when-help-has-hurt-before): For people who learned the hard way that asking for help can cost you. What trauma-informed therapy should look like when institutions have already let you down.
 - [When Someone Else Decided You Should Be Here](https://lovettcounselingandconsulting.com/when-someone-else-decided-you-should-be-here): What therapy is like when a court, an employer, or a family member is the reason you're going, and what a therapist can and can't report back.
