@@ -193,7 +193,7 @@
 
             <div class="form-group">
               <label for="message">Tell me a little about what's bringing you here *</label>
-              <textarea id="message" name="message" required placeholder="A few sentences are plenty — we'll figure the rest out in conversation."></textarea>
+              <textarea id="message" name="message" required placeholder="A few sentences are plenty. We'll figure the rest out in conversation."></textarea>
             </div>
 
             <div class="form-group">
@@ -220,7 +220,7 @@
             <p class="form-success-lead">Your message is on its way. I'll respond personally within two business days, usually sooner.</p>
             <div class="form-success-card">
               <p>If you don't hear back within 48 hours, please reach out directly at <a href="mailto:lovettcounselingandconsulting@gmail.com">lovettcounselingandconsulting@gmail.com</a>. Sometimes technology has other plans, and I'd hate to miss you.</p>
-              <p class="form-success-signature">— Whitney</p>
+              <p class="form-success-signature">Whitney</p>
             </div>
             <a href="/" class="btn btn-primary">Back to Home</a>
           </div>
@@ -371,7 +371,7 @@
 <script src="js/main.js?v=20260901" defer></script>
 
 <!-- ============================================================
-     EmailJS — contact form delivery
+     EmailJS: contact form delivery
      ------------------------------------------------------------
      SETUP (one-time, ~5 minutes at emailjs.com):
        1. Create a free account at https://www.emailjs.com/
@@ -428,7 +428,7 @@
       e.preventDefault();
       if (!status || !submitBtn) return;
 
-      // Honeypot — silently succeed if a bot filled it
+      // Honeypot: silently succeed if a bot filled it
       if (form.querySelector("[name=_gotcha]").value) return;
 
       // Quick required-field check
@@ -455,7 +455,7 @@
         if (typeof emailjs === "undefined") {
           throw new Error("EmailJS not loaded");
         }
-        // Build template params — these map to {{name}} tokens in the EmailJS template
+        // Build template params; these map to {{name}} tokens in the EmailJS template
         const data = new FormData(form);
         const topicKey = data.get("topic") || "other";
         const templateParams = {
@@ -477,13 +477,13 @@
           // Scroll the success card into view (gentle, in case form is below the fold)
           successCard.scrollIntoView({ behavior: "smooth", block: "center" });
         } else {
-          status.textContent = "Thank you — your message is on its way. I'll respond within two business days.";
+          status.textContent = "Thank you. Your message is on its way. I'll respond within two business days.";
           status.style.color = "#3E4A35";
           submitBtn.textContent = "Sent ✓";
         }
       } catch (err) {
         console.error(err);
-        status.textContent = "Sorry — something went wrong sending your message. Please email directly at lovettcounselingandconsulting@gmail.com.";
+        status.textContent = "Sorry, something went wrong sending your message. Please email directly at lovettcounselingandconsulting@gmail.com.";
         status.style.color = "#9A5238";
         submitBtn.disabled = false;
         submitBtn.textContent = originalLabel;
