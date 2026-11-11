@@ -219,7 +219,7 @@
             <h2 class="form-success-title">Message received</h2>
             <p class="form-success-lead">Your message is on its way. I'll respond personally within two business days, usually sooner.</p>
             <div class="form-success-card">
-              <p>If you don't hear back within 48 hours, please reach out directly at <a href="mailto:lovettcounselingandconsulting@gmail.com">lovettcounselingandconsulting@gmail.com</a>. Sometimes technology has other plans, and I'd hate to miss you.</p>
+              <p>If you don't hear back within two business days, please call or text <a href="tel:+15308020437">(530) 802-0437</a> or email <a href="mailto:lovettcounselingandconsulting@gmail.com">lovettcounselingandconsulting@gmail.com</a>. Sometimes technology has other plans, and I'd hate to miss you.</p>
               <p class="form-success-signature">Whitney</p>
             </div>
             <a href="/" class="btn btn-primary">Back to Home</a>
@@ -378,31 +378,12 @@
 
 <script src="js/main.js?v=20260901" defer></script>
 
-<!-- ============================================================
-     EmailJS: contact form delivery
-     ------------------------------------------------------------
-     SETUP (one-time, ~5 minutes at emailjs.com):
-       1. Create a free account at https://www.emailjs.com/
-       2. Add an Email Service → choose "Gmail" → connect Whitney's gmail
-       3. Create an Email Template (use the template body from the README)
-       4. Replace the three placeholders below:
-            EMAILJS_PUBLIC_KEY   → Account → API Keys → Public Key
-            EMAILJS_SERVICE_ID   → Email Services → your service ID
-            EMAILJS_TEMPLATE_ID  → Email Templates → your template ID
-     ============================================================ -->
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
   (function () {
-    // ---------- CONFIG: replace these three values ----------
-    const EMAILJS_PUBLIC_KEY  = "COxipl2EbJ6_oBYVG";
-    const EMAILJS_SERVICE_ID  = "service_jqdv5eq";
-    const EMAILJS_TEMPLATE_ID = "template_1660q5c";
-    // --------------------------------------------------------
-
-    // Initialize EmailJS
-    if (typeof emailjs !== "undefined") {
-      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-    }
+    // Inquiries post to /api/contact (functions/api/contact.js), which sends
+    // them through Resend from notify.lovettcounselingandconsulting.com.
+    const ENDPOINT = "/api/contact";
+    const FALLBACK = 'Sorry, your message didn’t go through. Please call or text <a href="tel:+15308020437">(530) 802-0437</a> or email <a href="mailto:lovettcounselingandconsulting@gmail.com">lovettcounselingandconsulting@gmail.com</a>.';
 
     const form = document.getElementById("contact-form");
     const status = form && form.querySelector(".form-status");
@@ -410,13 +391,6 @@
     const formColumn = form && form.closest(".form-column");
     const formHeading = formColumn && formColumn.querySelector(".form-column-heading");
     const successCard = document.getElementById("form-success");
-
-    const TOPIC_LABELS = {
-      individual: "Individual Therapy",
-      couples:    "Couples Therapy",
-      consulting: "Consulting",
-      other:      "General Inquiry"
-    };
 
     // Pre-fill topic from ?topic= query string
     const params = new URLSearchParams(window.location.search);
@@ -460,38 +434,48 @@
       status.textContent = "";
 
       try {
-        if (typeof emailjs === "undefined") {
-          throw new Error("EmailJS not loaded");
-        }
-        // Build template params; these map to {{name}} tokens in the EmailJS template
         const data = new FormData(form);
-        const topicKey = data.get("topic") || "other";
-        const templateParams = {
+        const payload = {
           name:              data.get("name") || "",
           email:             data.get("_replyto") || "",
           phone:             data.get("phone") || "",
-          topic:             topicKey,
-          topic_label:       TOPIC_LABELS[topicKey] || "General Inquiry",
+          topic:             data.get("topic") || "other",
           message:           data.get("message") || "",
           preferred_contact: data.get("preferred_contact") || "email",
-          submitted_at:      new Date().toLocaleString("en-US", { dateStyle: "full", timeStyle: "short" })
+          _gotcha:           data.get("_gotcha") || "",
+          "cf-turnstile-response": data.get("cf-turnstile-response") || ""
         };
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+        const res = await fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const out = await res.json().catch(() => ({}));
+        if (!res.ok || !out.ok) {
+          // A 400 with a message means something in the form needs fixing.
+          // Anything else means delivery failed, so show the phone and email.
+          const err = new Error(out.error || "Request failed");
+          err.fixable = res.status === 400 && Boolean(out.error);
+          throw err;
+        }
         form.reset();
         if (successCard) {
           if (formHeading) formHeading.hidden = true;
           form.hidden = true;
           successCard.hidden = false;
-          // Scroll the success card into view (gentle, in case form is below the fold)
           successCard.scrollIntoView({ behavior: "smooth", block: "center" });
         } else {
           status.textContent = "Thank you. Your message is on its way. I'll respond within two business days.";
           status.style.color = "#3E4A35";
-          submitBtn.textContent = "Sent ✓";
+          submitBtn.textContent = "Sent";
         }
       } catch (err) {
         console.error(err);
-        status.textContent = "Sorry, something went wrong sending your message. Please email directly at lovettcounselingandconsulting@gmail.com.";
+        if (err.fixable) {
+          status.textContent = err.message;
+        } else {
+          status.innerHTML = FALLBACK;
+        }
         status.style.color = "#9A5238";
         submitBtn.disabled = false;
         submitBtn.textContent = originalLabel;

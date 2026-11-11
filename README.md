@@ -6,7 +6,36 @@ A trauma-informed therapy + consulting practice site. Static HTML/CSS/JS — no 
 
 ---
 
-## Tomorrow's Launch Checklist
+## Contact form (Resend, since November 2026)
+
+The form on `/contact` posts to `/api/contact`, a Cloudflare Pages Function in `functions/api/contact.js`. It sends through Resend from `website@notify.lovettcounselingandconsulting.com`, so it no longer depends on a Gmail sign-in and a password change can't break it.
+
+What it sends:
+- A branded notification to the practice inbox. Hitting Reply answers the visitor.
+- A short confirmation to the visitor with the reply timeline, phone, email and the 988 line.
+
+Cloudflare Pages > Settings > Variables and Secrets (set for Production and Preview):
+
+| Name | What |
+|---|---|
+| `RESEND_API_KEY` | Secret. Resend API key for this domain |
+| `TO_EMAIL` | `lovettcounselingandconsulting@gmail.com` |
+| `FROM_EMAIL` | `website@notify.lovettcounselingandconsulting.com` |
+| `HEALTH_TOKEN` | Secret. Random string used by the daily health check |
+| `HEALTH_TO` | Where health checks go (not the practice inbox) |
+| `TURNSTILE_SECRET` | Optional. Turns on the Cloudflare Turnstile spam check |
+
+Optional: bind a KV namespace as `SUBMISSIONS` and every inquiry is saved for 30 days before any email goes out, so nothing is lost if email delivery fails.
+
+Health check: POST to `/api/contact` with header `x-health-token: <HEALTH_TOKEN>`. It emails only `HEALTH_TO`, with a `[Health check]` subject, and never touches the practice inbox. A wrong token gets a 401 and sends nothing.
+
+To rotate the Resend key: create a new key in Resend, paste it into `RESEND_API_KEY`, redeploy, then delete the old key.
+
+If the form ever shows an error, visitors are given the phone number and email address directly, so no one is left without a way to reach the practice.
+
+---
+
+## Original launch checklist (August 2026, kept for reference)
 
 Step-by-step for the evening you go live. Allow ~60–90 minutes total.
 
